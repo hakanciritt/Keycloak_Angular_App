@@ -1,0 +1,60 @@
+<div>
+    @if(authService.isInRole("RoleCreate")){
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+        <i class="fa-solid fa-plus">Ekle</i>
+    </button>
+    }
+
+</div>
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (role of roles; track $index) {
+            <tr>
+                <th>{{role.id}}</th>
+                <td>{{role.name}}</td>
+            </tr>
+
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+@if(authService.isInRole("RoleCreate")){
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Role Form</h1>
+            <div class="modal-content">
+                <button type="button" #addModalCloseBtn class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Role Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="name">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Description</label>
+                    <input type="text" class="form-control" [(ngModel)]="description">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="create()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
