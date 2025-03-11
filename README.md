@@ -14,6 +14,7 @@ docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADM
 
 
 npm install
+
 ng serve --open
 
 ![Screenshot 2025-03-11 at 23 10 30](https://github.com/user-attachments/assets/8cf72630-8a11-471c-97ab-893abc3c65c5)
