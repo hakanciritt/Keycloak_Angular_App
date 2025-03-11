@@ -1911,11 +1911,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hakancirit/RiderProjects/Keycloak/Keycloak.API/Keycloak.API.csproj",
+      "projectUniqueName": "/Users/hakancirit/Keycloak_Angular_App/Keycloak/Keycloak.API/Keycloak.API.csproj",
       "projectName": "Keycloak.API",
-      "projectPath": "/Users/hakancirit/RiderProjects/Keycloak/Keycloak.API/Keycloak.API.csproj",
+      "projectPath": "/Users/hakancirit/Keycloak_Angular_App/Keycloak/Keycloak.API/Keycloak.API.csproj",
       "packagesPath": "/Users/hakancirit/.nuget/packages/",
-      "outputPath": "/Users/hakancirit/RiderProjects/Keycloak/Keycloak.API/obj/",
+      "outputPath": "/Users/hakancirit/Keycloak_Angular_App/Keycloak/Keycloak.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/hakancirit/.nuget/NuGet/NuGet.Config"

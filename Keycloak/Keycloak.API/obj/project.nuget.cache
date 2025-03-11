@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "06ARwmy2IKE=",
+  "dgSpecHash": "xwOKOLk2q4M=",
   "success": true,
-  "projectFilePath": "/Users/hakancirit/RiderProjects/Keycloak/Keycloak.API/Keycloak.API.csproj",
+  "projectFilePath": "/Users/hakancirit/Keycloak_Angular_App/Keycloak/Keycloak.API/Keycloak.API.csproj",
   "expectedPackageFiles": [
     "/Users/hakancirit/.nuget/packages/keycloak.authservices.authentication/2.6.0/keycloak.authservices.authentication.2.6.0.nupkg.sha512",
     "/Users/hakancirit/.nuget/packages/keycloak.authservices.authorization/2.6.0/keycloak.authservices.authorization.2.6.0.nupkg.sha512",

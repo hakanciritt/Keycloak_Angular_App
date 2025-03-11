@@ -28,7 +28,11 @@
 
 
             </ul>
-            <button class="btn btn-outline-danger" (click)="authService.logout()">Logout (Hakan Cirit)</button>
+            @if(authService.isAuthenticate()){
+            <button class="btn btn-outline-danger" (click)="authService.logout()">Logout
+                ({{this.authService.getUser()?.name}})</button>
+            }
+
         </div>
     </nav>
 
