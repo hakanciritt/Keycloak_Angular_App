@@ -1,4 +1,4 @@
-for running project. steps
+steps for running project
 
 1 - go to terminal and running docker command line 
 
