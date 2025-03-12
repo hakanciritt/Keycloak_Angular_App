@@ -8,8 +8,9 @@
             <th scope="col">Email</th>
             <th scope="col">Is Enabled?</th>
             @if(authService.isInRole('UserDelete')){
-              <th scope="col">Delete</th>
+            <th scope="col">Delete</th>
             }
+            <th scope="col">Roles</th>
         </tr>
     </thead>
     <tbody>
@@ -27,15 +28,43 @@
                 <span class="badge text-bg-danger">Passive</span>
                 }
             </td>
-             @if(authService.isInRole('UserDelete')){
-                <td>
-                    <button (click)="delete(user.id)" class="btn btn-outline-danger">Delete</button>
-                </td>    
+            @if(authService.isInRole('UserDelete')){
+            <td>
+                <button (click)="delete(user.id)" class="btn btn-outline-danger">Delete</button>
+            </td>
             }
-            
+            <td>
+                <button (click)="getUserRoles(user.id)" class="btn btn-outline-success" data-bs-toggle="modal"
+                    data-bs-target="#roleModal">Roles</button>
+            </td>
         </tr>
-
         }
 
     </tbody>
-</table>
+
+    <div class="modal fade" id="roleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Role Form</h1>
+                <div class="modal-content">
+                    <button type="button" #roleModalCloseBtn class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @for (item of userRoles; track $index) {
+                    <div class="form-group">
+                        <label for="">Role Name</label>
+                        <input type="checkbox" [(ngModel)]="item.isSelect" name="{{item.name}}" value="{{item.name}}"
+                            id="{{item.id}}" class="form-control">
+                    </div>
+
+                    }
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="saveRoles()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>

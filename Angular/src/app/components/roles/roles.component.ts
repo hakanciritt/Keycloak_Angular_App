@@ -51,7 +51,6 @@ export class RolesComponent implements OnInit {
     this.http.post(`${this.const.getApiBaseUrl()}/Roles/Create`, { name: this.name, description: this.description })
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.name = "";
           this.description = "";
           this.addModalCloseBtn?.nativeElement.click();
