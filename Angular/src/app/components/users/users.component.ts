@@ -19,9 +19,10 @@ export class UsersComponent implements OnInit {
   users: UserModel[] = [];
   userRoles: CustomUserRoleModel[] = [];
   userOldSelectedRoles: UserRoleModel[] = [];
+  userId: string = "";
 
   authService = inject(AuthService);
-  @ViewChild("roleModalCloseBtn") roleModalCloseBtn: ElementRef<HTMLButtonElement> | undefined;
+  @ViewChild("modelCloseBtn") modelCloseBtn: ElementRef<HTMLButtonElement> | undefined;
   constructor(private http: HttpClient) {
 
   }
@@ -42,12 +43,13 @@ export class UsersComponent implements OnInit {
   }
 
   getUserRoles(userId: string) {
+    this.userId = userId;
     //get all roles 
     this.http.get<RoleModel[]>(`${environment.API_BASE_URL}/Roles/GetAll`).subscribe({
       next: (roles: RoleModel[]) => {
         this.userRoles = [];
         roles.forEach(value => {
-          
+
           let userRoleModel = new CustomUserRoleModel();
           userRoleModel.id = value.id;
           userRoleModel.isSelect = false;
@@ -82,11 +84,55 @@ export class UsersComponent implements OnInit {
   }
   saveRoles() {
 
-    this.roleModalCloseBtn?.nativeElement.click();
+    const toBeWillAddedRoles: CustomUserRoleModel[] = this.userRoles
+      .filter(d => d.isSelect && !this.userOldSelectedRoles.map(val => val.name).includes(d.name));
+
+    const newRoles = toBeWillAddedRoles.map((val: CustomUserRoleModel) => {
+      let roleModal = new RoleModel();
+      roleModal.id = val.id;
+      roleModal.name = val.name;
+      return roleModal;
+    });
+
+    if (newRoles?.length > 0 && this.authService.isInRole("RoleCreate")) {
+      this.http.post(`${environment.API_BASE_URL}/UserRoles/Create/${this.userId}`, newRoles)
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+    }
+
+    const willBeDeletedroles: UserRoleModel[] = this.userOldSelectedRoles
+      .filter(d => this.userRoles.filter(k => !k.isSelect).map(val => val.name).includes(d.name));
+
+    const deleteRoles = willBeDeletedroles.map((val: UserRoleModel) => {
+      let roleModal = new RoleModel();
+      roleModal.id = val.id;
+      roleModal.name = val.name;
+      return roleModal;
+    });
+
+    if (deleteRoles?.length > 0 && this.authService.isInRole("RoleDelete")) {
+      this.http.delete(`${environment.API_BASE_URL}/UserRoles/Delete/${this.userId}`, { body: deleteRoles })
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+    }
+    this.modelCloseBtn?.nativeElement.click();
   }
-  delete(userId: string) {
+
+  delete(userId: string, userName: string) {
     Swal.fire({
-      title: "Are you sure delete?",
+      title: `Are you sure delete for ${userName} user?`,
       icon: "warning",
       showCloseButton: true,
       showConfirmButton: true,
