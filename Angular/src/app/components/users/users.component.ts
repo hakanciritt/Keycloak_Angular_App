@@ -19,10 +19,10 @@ export class UsersComponent implements OnInit {
   const = inject(Constants);
   users: UserModel[] = [];
   userRoles: CustomUserRoleModel[] = [];
-  userOldSelectedRoles : UserRoleModel[] = [];
+  userOldSelectedRoles: UserRoleModel[] = [];
 
   authService = inject(AuthService);
-  @ViewChild("roleModalCloseBtn") roleModalCloseBtn : ElementRef<HTMLButtonElement> | undefined;
+  @ViewChild("roleModalCloseBtn") roleModalCloseBtn: ElementRef<HTMLButtonElement> | undefined;
   constructor(private http: HttpClient) {
 
   }
@@ -47,7 +47,8 @@ export class UsersComponent implements OnInit {
     this.http.get<RoleModel[]>(`${this.const.getApiBaseUrl()}/Roles/GetAll`).subscribe({
       next: (roles: RoleModel[]) => {
         this.userRoles = [];
-        roles.forEach((value, index) => {
+        roles.forEach(value => {
+          
           let userRoleModel = new CustomUserRoleModel();
           userRoleModel.id = value.id;
           userRoleModel.isSelect = false;
@@ -61,9 +62,9 @@ export class UsersComponent implements OnInit {
           .subscribe({
             next: (userRoles: UserRoleModel[]) => {
               this.userOldSelectedRoles = userRoles;
-              
+
               userRoles.forEach(value => {
-                let existsRole = this.userRoles.findIndex(d => d.name == value.name);
+                let existsRole: number = this.userRoles.findIndex(d => d.name == value.name);
                 if (existsRole) {
                   this.userRoles[existsRole].isSelect = true;
                 }
@@ -81,7 +82,7 @@ export class UsersComponent implements OnInit {
     });
   }
   saveRoles() {
-    
+
     this.roleModalCloseBtn?.nativeElement.click();
   }
   delete(userId: string) {
