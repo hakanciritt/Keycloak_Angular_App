@@ -1,10 +1,10 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { RoleModel } from '../../models/role.model';
 import { HttpClient } from '@angular/common/http';
-import { Constants } from '../../../constantsEnv';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -16,7 +16,6 @@ import { AuthService } from '../../services/auth.service';
 export class RolesComponent implements OnInit {
 
   roles: RoleModel[] = [];
-  const = inject(Constants);
   http = inject(HttpClient);
   name: string = "";
   description: string = "";
@@ -31,7 +30,7 @@ export class RolesComponent implements OnInit {
     if(!this.authService.isInRole("RoleGetAll"))
       return;
 
-    this.http.get<RoleModel[]>(`${this.const.getApiBaseUrl()}/Roles/GetAll`).subscribe({
+    this.http.get<RoleModel[]>(`${environment.API_BASE_URL}/Roles/GetAll`).subscribe({
       next: (res: RoleModel[]) => {
         console.log(res);
 
@@ -48,7 +47,7 @@ export class RolesComponent implements OnInit {
     if(!this.authService.isInRole("RoleCreate"))
       return;
     
-    this.http.post(`${this.const.getApiBaseUrl()}/Roles/Create`, { name: this.name, description: this.description })
+    this.http.post(`${environment.API_BASE_URL}/Roles/Create`, { name: this.name, description: this.description })
       .subscribe({
         next: (res) => {
           this.name = "";

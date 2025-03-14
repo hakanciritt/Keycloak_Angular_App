@@ -4,7 +4,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { LoginModel } from '../../models/login.model';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Constants } from '../../../constantsEnv';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +14,13 @@ import { Constants } from '../../../constantsEnv';
 })
 export class LoginComponent {
   loginModel: LoginModel = new LoginModel();
-  const = inject(Constants);
 
   constructor(protected httpClient: HttpClient, private router: Router) {
 
   }
 
   login() {
-    this.httpClient.post(`${this.const.getApiBaseUrl()}/Auth/Login`, this.loginModel).subscribe({
+    this.httpClient.post(`${environment.API_BASE_URL}/Auth/Login`, this.loginModel).subscribe({
       next: (res: any) => {
         const accessToken = localStorage.getItem("access_token");
         if (!accessToken) {

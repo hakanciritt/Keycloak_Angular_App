@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Inject, inject, OnInit, ViewChild } from '@angular/core';
 import { UserModel } from '../../models/user.model';
-import { Constants } from '../../../constantsEnv';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2'
 import { RoleModel } from '../../models/role.model';
 import { CustomUserRoleModel } from '../../models/custom_user_role.model';
 import { UserRoleModel } from '../../models/user_role.model';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './users.component.css',
 })
 export class UsersComponent implements OnInit {
-  const = inject(Constants);
   users: UserModel[] = [];
   userRoles: CustomUserRoleModel[] = [];
   userOldSelectedRoles: UserRoleModel[] = [];
@@ -32,7 +31,7 @@ export class UsersComponent implements OnInit {
   }
 
   userGetAll() {
-    this.http.get<UserModel[]>(`${this.const.getApiBaseUrl()}/Users/GetAll`).subscribe({
+    this.http.get<UserModel[]>(`${environment.API_BASE_URL}/Users/GetAll`).subscribe({
       next: (res: UserModel[]) => {
         this.users = res;
       },
@@ -44,7 +43,7 @@ export class UsersComponent implements OnInit {
 
   getUserRoles(userId: string) {
     //get all roles 
-    this.http.get<RoleModel[]>(`${this.const.getApiBaseUrl()}/Roles/GetAll`).subscribe({
+    this.http.get<RoleModel[]>(`${environment.API_BASE_URL}/Roles/GetAll`).subscribe({
       next: (roles: RoleModel[]) => {
         this.userRoles = [];
         roles.forEach(value => {
@@ -58,7 +57,7 @@ export class UsersComponent implements OnInit {
         });
 
         //user roles
-        this.http.get<UserRoleModel[]>(`${this.const.getApiBaseUrl()}/UserRoles/GetAllUserRoles/${userId}`)
+        this.http.get<UserRoleModel[]>(`${environment.API_BASE_URL}/UserRoles/GetAllUserRoles/${userId}`)
           .subscribe({
             next: (userRoles: UserRoleModel[]) => {
               this.userOldSelectedRoles = userRoles;
@@ -97,7 +96,7 @@ export class UsersComponent implements OnInit {
     }).then(res => {
 
       if (res.isConfirmed) {
-        this.http.delete(`${this.const.getApiBaseUrl()}/Users/Delete/` + userId).subscribe({
+        this.http.delete(`${environment.API_BASE_URL}/Users/Delete/` + userId).subscribe({
           next: (res: any) => {
             console.log(res);
             this.userGetAll();

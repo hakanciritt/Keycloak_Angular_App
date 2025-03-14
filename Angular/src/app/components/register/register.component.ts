@@ -4,7 +4,7 @@ import { RegisterModel } from '../../models/register.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Constants } from '../../../constantsEnv';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -16,12 +16,11 @@ export class RegisterComponent {
   registerModel: RegisterModel = new RegisterModel();
   http = inject(HttpClient);
   router = inject(Router);
-  const  = inject(Constants);
 
   register() {
     
     this.http
-      .post(`${this.const.getApiBaseUrl()}/Auth/Register`, this.registerModel)
+      .post(`${environment.API_BASE_URL}/Auth/Register`, this.registerModel)
       .subscribe({
         next: (res: any) => {
           console.log(res);
