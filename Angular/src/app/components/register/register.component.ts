@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RegisterModel } from '../../models/register.model';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })

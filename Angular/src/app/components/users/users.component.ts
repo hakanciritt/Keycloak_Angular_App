@@ -82,6 +82,7 @@ export class UsersComponent implements OnInit {
       },
     });
   }
+  
   saveRoles() {
 
     const toBeWillAddedRoles: CustomUserRoleModel[] = this.userRoles

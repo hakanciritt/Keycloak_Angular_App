@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Keycloak.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7040db9d7cef6da45c6d1d258f1d664e0e32278e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d27f4de1fb51b8f80ab1ff75322d2a624de05c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Keycloak.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Keycloak.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

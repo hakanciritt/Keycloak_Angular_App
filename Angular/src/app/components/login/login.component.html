@@ -11,10 +11,12 @@
       <input type="password" class="form-control" [(ngModel)]="loginModel.password"
         [ngModelOptions]="{standalone: true}" placeholder="Password">
     </div>
+    <br>
     <button class="btn btn-primary" (click)="login()">Submit</button>
   </form>
 
+  <br/>
   <div>
-    <button routerLink="/register" class="btn btn-primary">Register</button>
+    <button routerLink="/register" class="btn btn-primary">you dont have an account (Register)</button>
   </div>
 </div>

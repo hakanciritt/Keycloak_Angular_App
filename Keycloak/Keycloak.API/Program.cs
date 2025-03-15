@@ -11,7 +11,9 @@ builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Users",
-        builder => { builder.RequireResourceRoles("UserCreate", "UserGetAll", "UserUpdate", "UserDelete"); });
+        builder => builder.RequireResourceRoles("UserCreate", "UserGetAll", "UserUpdate", "UserDelete"));
+    options.AddPolicy("Roles",
+        builder => builder.RequireResourceRoles("RoleCreate", "RoleGetAll", "RoleUpdate", "RoleDelete"));
 }).AddKeycloakAuthorization(builder.Configuration);
 
 builder.Services.AddSwaggerGen(setup =>
@@ -59,7 +61,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapGroup("api/Users").AddUserEndpoints().RequireAuthorization("Users").WithTags("User");
-app.MapGroup("api/Roles").AddRoleEndpoints().RequireAuthorization().WithTags("Role");
+app.MapGroup("api/Roles").AddRoleEndpoints().RequireAuthorization("Roles").WithTags("Role");
 app.MapGroup("api/Auth").AddAuthEndpoints().WithTags("Auth");
 app.MapGroup("api/UserRoles").AddUserRolesEndpoints().RequireAuthorization().WithTags("UserRole");
 

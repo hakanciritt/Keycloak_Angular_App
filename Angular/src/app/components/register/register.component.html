@@ -34,9 +34,11 @@
             <input type="password" class="form-control" [(ngModel)]="registerModel.password" [ngModelOptions]="{standalone: true}" 
             placeholder="Password">
         </div>
+        <br>
         <button class="btn btn-primary" (click)="register()">Submit</button>
     </form>
 
+    <br/>
     <div>
         <button routerLink="/login" class="btn btn-primary">already have an account</button>
     </div>
