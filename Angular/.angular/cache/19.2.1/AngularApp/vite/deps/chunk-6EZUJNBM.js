@@ -27,7 +27,6 @@ import {
   Renderer2,
   RendererStyleFlags2,
   RuntimeError,
-  Subject,
   TemplateRef,
   Version,
   ViewContainerRef,
@@ -55,7 +54,10 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-MIEXXXPH.js";
+} from "./chunk-U62FLTWO.js";
+import {
+  Subject
+} from "./chunk-P6U2JBMQ.js";
 import {
   __async,
   __spreadProps,
@@ -4949,4 +4951,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-ZOI4V6XG.js.map
+//# sourceMappingURL=chunk-6EZUJNBM.js.map

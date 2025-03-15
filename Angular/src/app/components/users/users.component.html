@@ -39,27 +39,27 @@
             </td>
         </tr>
         }
-
     </tbody>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">User Roles Edit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" #modelCloseBtn class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     @for (item of userRoles; track $index) {
-                        <div class="form-check">
-                            <input type="checkbox" [(ngModel)]="item.isSelect" [name]="item.name" 
-                                [value]="item.id" [id]="'checkbox-' + item.id" class="form-check-input">
-                            <label class="form-check-label" [for]="'checkbox-' + 'item.id'">
-                                {{item.name}}
-                            </label>
-                        </div>
-                        
+                    <div class="form-check">
+                        <input type="checkbox" [(ngModel)]="item.isSelect" [name]="item.name" [value]="item.id"
+                            [id]="'checkbox-' + item.id" class="form-check-input">
+                        <label class="form-check-label" [for]="'checkbox-' + 'item.id'">
+                            {{item.name}}
+                        </label>
+                    </div>
+
                     }
                 </div>
                 <div class="modal-footer">

@@ -20,20 +20,18 @@ export class RolesComponent implements OnInit {
   name: string = "";
   description: string = "";
   authService = inject(AuthService);
-  @ViewChild("addModalCloseBtn") addModalCloseBtn : ElementRef<HTMLButtonElement> | undefined;
+  @ViewChild("addModalCloseBtn") addModalCloseBtn: ElementRef<HTMLButtonElement> | undefined;
 
   ngOnInit(): void {
     this.getAllRoles();
   }
 
   getAllRoles() {
-    if(!this.authService.isInRole("RoleGetAll"))
+    if (!this.authService.isInRole("RoleGetAll"))
       return;
 
     this.http.get<RoleModel[]>(`${environment.API_BASE_URL}/Roles/GetAll`).subscribe({
       next: (res: RoleModel[]) => {
-        console.log(res);
-
         this.roles = res;
       },
       error: (err) => {
@@ -42,11 +40,35 @@ export class RolesComponent implements OnInit {
     });
   }
 
-  create() {
+  delete(roleName: string): void {
+    Swal.fire({
+      title: `Are you sure delete for ${roleName} role?`,
+      icon: "warning",
+      showCloseButton: true,
+      showConfirmButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Close"
 
-    if(!this.authService.isInRole("RoleCreate"))
+    }).then(res => {
+
+      if (res.isConfirmed) {
+        this.http.delete(`${environment.API_BASE_URL}/Roles/Delete/` + roleName).subscribe({
+          next: (res: any) => {
+            this.getAllRoles();
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+
+      }
+    });
+
+  }
+  create() {
+    if (!this.authService.isInRole("RoleCreate"))
       return;
-    
+
     this.http.post(`${environment.API_BASE_URL}/Roles/Create`, { name: this.name, description: this.description })
       .subscribe({
         next: (res) => {
@@ -57,13 +79,11 @@ export class RolesComponent implements OnInit {
         },
         error: (err) => {
           Swal.fire({
-            title : "Error",
-            icon : "error",
-            titleText : err.error.errorMessage
+            title: "Error",
+            icon: "error",
+            titleText: err.error.errorMessage
           })
         },
       });
   }
-
-
 }

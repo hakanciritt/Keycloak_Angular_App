@@ -12,14 +12,21 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
             @for (role of roles; track $index) {
-                <tr>
-                    <th>{{role.id}}</th>
-                    <td>{{role.name}}</td>
-                </tr>
+            <tr>
+                <th>{{role.id}}</th>
+                <td>{{role.name}}</td>
+
+                @if(authService.isInRole('RoleDelete')){
+                <td>
+                    <button (click)="delete(role.name)" class="btn btn-outline-danger">Delete</button>
+                </td>
+                }
+            </tr>
             }
 
         </tbody>
@@ -31,9 +38,9 @@
 
 <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Role Form</h1>
-            <div class="modal-content">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Role Create</h5>
                 <button type="button" #addModalCloseBtn class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -42,8 +49,7 @@
                     <label for="">Role Name</label>
                     <input type="text" class="form-control" [(ngModel)]="name">
                 </div>
-            </div>
-            <div class="modal-body">
+
                 <div class="form-group">
                     <label for="">Description</label>
                     <input type="text" class="form-control" [(ngModel)]="description">

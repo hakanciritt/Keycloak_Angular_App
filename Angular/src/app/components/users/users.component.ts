@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
 
               userRoles.forEach(value => {
                 let existsRole: number = this.userRoles.findIndex(d => d.name == value.name);
-                if (existsRole) {
+                if (existsRole > -1) {
                   this.userRoles[existsRole].isSelect = true;
                 }
               });
