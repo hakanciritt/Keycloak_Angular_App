@@ -19,6 +19,10 @@ npm install
 
 ng serve --open
 
-![Screenshot 2025-03-11 at 23 10 30](https://github.com/user-attachments/assets/8cf72630-8a11-471c-97ab-893abc3c65c5)
+![Screenshot 2025-03-15 at 14 12 53](https://github.com/user-attachments/assets/0f19a7cf-4c71-46f7-8b38-8d743f872615)
 
-![Screenshot 2025-03-11 at 23 11 00](https://github.com/user-attachments/assets/98a24483-5b4b-4c8d-be61-10be9ac3023a)
+![Screenshot 2025-03-15 at 14 13 16](https://github.com/user-attachments/assets/918ef552-c27b-4a9a-98f4-1a47cf9edb21)
+
+![Screenshot 2025-03-15 at 14 13 31](https://github.com/user-attachments/assets/8a604fc7-39e0-484e-9e20-3d21ef4d49be)
+
+
