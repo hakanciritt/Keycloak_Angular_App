@@ -1,9 +1,10 @@
-steps for running project
+steps to run the project
 
 1 - go to terminal and running docker command line 
 
-
 docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.1.3 start-dev
+
+keycloak guide : https://www.keycloak.org/getting-started/getting-started-docker
 
 ![Screenshot 2025-03-11 at 23 13 43](https://github.com/user-attachments/assets/22aa4635-fd18-41de-a9a1-8823a6401729)
 
@@ -12,8 +13,7 @@ docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADM
 
 ![Screenshot 2025-03-11 at 23 09 33](https://github.com/user-attachments/assets/39c01e46-5318-4837-8b6e-0c15b57dbff9)
 
-3 - run angular project above command lines
-
+3 - go to terminal and running below command lines.
 
 npm install
 
